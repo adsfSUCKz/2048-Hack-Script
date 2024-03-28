@@ -14,7 +14,7 @@ function Grid(e, t) {
 }
 
 function Tile(e, t) {
-    this.x = e.x, this.y = e.y, this.value = 2048, this.previousPosition = null, this.mergedFrom = null
+    this.x = e.x, this.y = e.y, this.value = 99999999, this.previousPosition = null, this.mergedFrom = null
 }
 
 function LocalStorageManager() {
@@ -196,7 +196,7 @@ Function.prototype.bind = Function.prototype.bind || function(e) {
             },
             a = this.positionClass(n),
             r = ["tile", "tile-" + e.value, a];
-        e.value > 2048 && r.push("tile-super"), this.applyClasses(i, r), o.classList.add("tile-inner"), o.textContent = e.value, e.previousPosition ? window.requestAnimationFrame((function() {
+        e.value > 99999999 && r.push("tile-super"), this.applyClasses(i, r), o.classList.add("tile-inner"), o.textContent = e.value, e.previousPosition ? window.requestAnimationFrame((function() {
             r[2] = t.positionClass({
                 x: e.x,
                 y: e.y
@@ -389,7 +389,7 @@ Function.prototype.bind = Function.prototype.bind || function(e) {
                             c = t.grid.cellContent(s.next);
                         if (c && c.value === o.value && !c.mergedFrom) {
                             var l = new Tile(s.next, 2 * o.value);
-                            l.mergedFrom = [o, c], t.grid.insertTile(l), t.grid.removeTile(o), o.updatePosition(s.next), t.score += l.value, 2048 === l.value && (t.won = !0)
+                            l.mergedFrom = [o, c], t.grid.insertTile(l), t.grid.removeTile(o), o.updatePosition(s.next), t.score += l.value, 99999999 === l.value && (t.won = !0)
                         } else t.moveTile(o, s.farthest);
                         t.positionsEqual(i, o) || (r = !0)
                     }
